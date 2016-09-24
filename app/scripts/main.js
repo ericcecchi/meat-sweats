@@ -17,6 +17,11 @@
  *
  */
 /* eslint-env browser */
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 (function() {
   'use strict';
 
@@ -72,5 +77,10 @@
     });
   }
 
-  // Your custom JavaScript goes here
+  injectTapEventPlugin();
+
+  ReactDOM.render(
+      <span>Hello, world!</span>,
+      document.getElementById('example')
+  );
 })();
