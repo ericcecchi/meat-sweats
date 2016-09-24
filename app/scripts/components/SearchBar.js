@@ -37,7 +37,7 @@ class SearchBar extends React.Component {
     render() {
         const nearButton = navigator.geolocation ? (
             <div className="SearchBar-near">
-                <IconButton onClick={this.props.onChange} tooltip="Use my Location">
+                <IconButton onClick={this.props.onChange} tooltip="Use my location">
                     <NearMe color={blue500}/>
                 </IconButton>
             </div>
