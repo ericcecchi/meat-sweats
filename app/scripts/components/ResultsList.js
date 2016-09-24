@@ -1,10 +1,21 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
+import Badge from 'material-ui/Badge';
 
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import moment from "moment";
+
+const build_maps_url = (params) => {
+    const map_url_parameters = [params.street_address, params.city, params.state, params.postal_code];
+    const maps_url = "https://maps.google.com?q=" + encodeURIComponent(map_url_parameters.join(" "));
+    return maps_url;
+};
+
+const maps_redirect = (params) => {
+    return function() {window.open(build_maps_url(params))};
+};
 
 const Result = (props) => {
     let isOpen = false;
@@ -31,9 +42,12 @@ const Result = (props) => {
                 </p>
             }
             secondaryTextLines={2}
+            onClick={maps_redirect(props)}
+            rightIcon={<Badge badgeContent={`${props.distance} mi`} badgeStyle={{background: "transparent"}}></Badge>}
         />
     );
 };
+
 
 class ResultsList extends React.Component {
     static defaultProps = {
