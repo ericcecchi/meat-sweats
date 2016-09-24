@@ -26,7 +26,7 @@ class ResultsList extends React.Component {
 
     render() {
         return (
-            <Paper>
+            <Paper className="ResultsList">
                 <List>
                     <Subheader>Nearby</Subheader>
                     {this.props.items.map((item, i, items) => {
@@ -37,6 +37,12 @@ class ResultsList extends React.Component {
                             </div>
                         )
                     })}
+                    {(!this.props.items.length || this.props.items.length == 0) && (
+                        <Result
+                            name="No locations found"
+                            street_address="Please try another search."
+                        />
+                    )}
                 </List>
             </Paper>
         );

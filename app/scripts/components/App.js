@@ -1,5 +1,6 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import LinearProgress from 'material-ui/LinearProgress';
 
 import ResultsList from './ResultsList';
 import SearchBar from './SearchBar';
@@ -10,17 +11,26 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            locations: []
+            isLoading: false,
+            locations: null
         }
     }
 
-    componentDidMount() {
+    getLocations() {
+        this.setState({
+            isLoading: true
+        });
         getLocations()
             .then((locations) => {
                 this.setState({
-                    locations
+                    locations,
+                    isLoading: false
                 });
             });
+    }
+
+    componentDidMount() {
+        // this.getLocations();
     }
 
     render() {
@@ -29,7 +39,8 @@ class App extends React.Component {
             <MuiThemeProvider>
                 <div>
                     <SearchBar />
-                    <ResultsList items={this.state.locations} />
+                    {this.state.isLoading && <LinearProgress mode="indeterminate" />}
+                    {this.state.locations && <ResultsList items={this.state.locations} />}
                 </div>
             </MuiThemeProvider>
         );

@@ -13,19 +13,21 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <div>
-              <Paper>
-                <TextField hintText="Search by address"/>
-                <IconButton tooltip="Search">
-                  <Search hoverColor="gray"/>
-                </IconButton>
-                <div className="nearMe">
-                  <IconButton tooltip="My Location">
-                    <NearMe color={blue500}/>
-                  </IconButton>
-                </div>
-              </Paper>
+          <Paper className="SearchBar">
+            <TextField
+                underlineShow={false}
+                className="SearchBar-field"
+                hintText="Search by address"
+            />
+            <IconButton tooltip="Search">
+              <Search hoverColor="gray"/>
+            </IconButton>
+            <div className="nearMe">
+              <IconButton tooltip="Use Current Location">
+                <NearMe color={blue500}/>
+              </IconButton>
             </div>
+          </Paper>
         );
     }
 }
