@@ -43,7 +43,7 @@ const Result = (props) => {
             }
             secondaryTextLines={2}
             onClick={maps_redirect(props)}
-            rightIcon={<Badge badgeContent={`${props.distance} mi`} badgeStyle={{background: "transparent"}}></Badge>}
+            rightIcon={<Badge badgeContent={`${props.distance.toFixed(2)} mi`} badgeStyle={{background: "transparent"}}></Badge>}
         />
     );
 };

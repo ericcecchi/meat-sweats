@@ -17,11 +17,11 @@ class App extends React.Component {
         }
     }
 
-    getLocations = () => {
+    getLocations = (address, near_me=false) => {
         this.setState({
             isLoading: true
         });
-        getLocations()
+        getLocations(address, near_me)
             .then((locations) => {
                 this.setState({
                     locations,
