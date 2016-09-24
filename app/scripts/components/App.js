@@ -38,7 +38,7 @@ class App extends React.Component {
         return (
             <MuiThemeProvider>
                 <div>
-                    <SearchBar />
+                    <SearchBar onChange={getLocations} />
                     {this.state.isLoading && <LinearProgress mode="indeterminate" />}
                     {this.state.locations && <ResultsList items={this.state.locations} />}
                 </div>
