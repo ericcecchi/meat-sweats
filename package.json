@@ -45,6 +45,7 @@
     "extends": "google"
   },
   "dependencies": {
+    "axios": "^0.14.0",
     "material-ui": "^0.15.4",
     "normalize.css": "^4.2.0",
     "react": "^15.3.2",

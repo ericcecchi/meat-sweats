@@ -16,7 +16,7 @@ const Result = (props) => (
 );
 
 class ResultsList extends React.Component {
-    defaultProps = {
+    static defaultProps = {
         items: null
     };
 
@@ -31,7 +31,7 @@ class ResultsList extends React.Component {
                     <Subheader>Nearby</Subheader>
                     {this.props.items.map((item, i, items) => {
                         return (
-                            <div>
+                            <div key={item.id}>
                                 <Result {...item}/>
                                 {i < items.length - 1 && <Divider />}
                             </div>
