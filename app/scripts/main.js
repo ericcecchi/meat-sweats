@@ -18,9 +18,7 @@
  */
 /* eslint-env browser */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import run from './ReactApp';
 
 (function() {
   'use strict';
@@ -77,10 +75,5 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
     });
   }
 
-  injectTapEventPlugin();
-
-  ReactDOM.render(
-      <span>Hello, world!</span>,
-      document.getElementById('example')
-  );
+  run();
 })();
