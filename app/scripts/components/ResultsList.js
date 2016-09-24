@@ -23,7 +23,7 @@ const Result = (props) => {
     const breakfast = props.meal_types && props.meal_types.indexOf('breakfast') >= 0 && '☕';
     const lunch = props.meal_types && props.meal_types.indexOf('lunch') >= 0 && '🍴';
     const snack = props.meal_types && props.meal_types.indexOf('snack') >= 0 && '🍎';
-    const openTimes = Object.values(props.meal_hours).map((mealTime) => {
+    props.meal_hours && Object.values(props.meal_hours).map((mealTime) => {
         const startTime = moment(mealTime.startTime, 'hh:mm');
         const endTime = moment(mealTime.endTime, 'hh:mm');
         if (mealTime.days[now.day() - 1] != 'x' && now.isBetween(startTime, endTime)) {
@@ -43,7 +43,7 @@ const Result = (props) => {
             }
             secondaryTextLines={2}
             onClick={maps_redirect(props)}
-            rightIcon={<Badge badgeContent={`${props.distance.toFixed(2)} mi`} badgeStyle={{background: "transparent"}}></Badge>}
+            rightIcon={<Badge badgeContent={<span dangerouslySetInnerHTML={{__html: `${props.distance.toFixed(1)}&nbsp;mi`}}></span>} badgeStyle={{background: "transparent"}}></Badge>}
         />
     );
 };

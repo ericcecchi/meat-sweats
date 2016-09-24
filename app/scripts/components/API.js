@@ -7,7 +7,7 @@ export function getLocations(address, near_me=false) {
         if (address) {
             query_params += "address=" + encodeURIComponent(address) + "&";
             query_params += "current_time=" + moment().format();
-            axios.get('http://ec2-54-218-0-220.us-west-2.compute.amazonaws.com:3000/locations'+query_params)
+            axios.get('http://ec2-54-218-0-220.us-west-2.compute.amazonaws.com:3000/locations.json'+query_params)
             // axios.get('http://ec2-54-218-0-220.us-west-2.compute.amazonaws.com:3000/locations.json')
                 .then((response) => {
                     resolve(response.data);
