@@ -94,6 +94,7 @@ gulp.task('styles', () => {
     .pipe($.newer('.tmp/styles'))
     .pipe($.sourcemaps.init())
     .pipe($.sass({
+      includePaths: ['node_modules/normalize.css/'],
       precision: 10
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))

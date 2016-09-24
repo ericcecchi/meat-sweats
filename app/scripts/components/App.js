@@ -1,4 +1,9 @@
 import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import ResultsList from './ResultsList';
+
+import locations from '../fixtures/locations';
 
 class App extends React.Component {
     constructor(props) {
@@ -7,7 +12,9 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>Hello, world.</div>
+            <MuiThemeProvider>
+                <ResultsList items={locations} />
+            </MuiThemeProvider>
         );
     }
 }

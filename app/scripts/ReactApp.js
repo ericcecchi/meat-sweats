@@ -9,6 +9,6 @@ export default function run() {
 
     ReactDOM.render(
         <App />,
-        document.getElementById('example')
+        document.getElementById('app')
     );
 }
