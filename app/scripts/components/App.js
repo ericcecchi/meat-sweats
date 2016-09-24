@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ResultsList from './ResultsList';
 
 import locations from '../fixtures/locations';
+import SearchBar from './SearchBar';
 
 class App extends React.Component {
     constructor(props) {
@@ -13,7 +14,10 @@ class App extends React.Component {
     render() {
         return (
             <MuiThemeProvider>
-                <ResultsList items={locations} />
+                <div>
+                    <SearchBar />
+                    <ResultsList items={locations} />
+                </div>
             </MuiThemeProvider>
         );
     }
