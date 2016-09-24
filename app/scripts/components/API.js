@@ -6,9 +6,10 @@ export function getLocations(address, near_me=false) {
     if (address) {
         query_params += "address=" + encodeURIComponent(address) + "&";
     } else if (near_me) {
+        let lat, lng;
         navigator.geolocation.getCurrentPosition(function(position) {
             lat = position.coords.latitude;
-            lng = position.coords.latitude;
+            lng = position.coords.longitude;
         });
         query_params += "lat=" + encodeURIComponent(lat) + "&";
         query_params += "lng=" + encodeURIComponent(lng) + "&";
