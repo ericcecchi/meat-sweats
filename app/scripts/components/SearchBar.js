@@ -20,7 +20,12 @@ class SearchBar extends React.Component {
     };
 
     searchClickHandler = (e) => {
-        this.props.onChange(this.state.textFieldValue);
+        this.props.onChange(this.state.textFieldValue, false);
+    };
+
+    nearMeClickHandler = (e) => {
+        this.props.onChange(null, true);
+        this.setState({textFieldValue: "Current Location"});
     };
 
     render() {
