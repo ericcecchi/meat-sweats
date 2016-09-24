@@ -6,6 +6,7 @@ import ResultsList from './ResultsList';
 import SearchBar from './SearchBar';
 
 import {getLocations} from './API';
+import food from '../../fixtures/food.json';
 
 class App extends React.Component {
     constructor(props) {
@@ -39,6 +40,7 @@ class App extends React.Component {
             <MuiThemeProvider>
                 <div>
                     <SearchBar onChange={getLocations} />
+                    <h1>Find <span title="food">{food[Math.floor(Math.random() * food.length)]}</span> near you.</h1>
                     {this.state.isLoading && <LinearProgress mode="indeterminate" />}
                     {this.state.locations && <ResultsList items={this.state.locations} />}
                 </div>

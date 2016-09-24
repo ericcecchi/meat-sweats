@@ -24,6 +24,12 @@ will be correctly compiled during `gulp serve` and `gulp`
 body {
   padding: 0 10px;
   background: #f9f9f9;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
 }
 
 .App {
