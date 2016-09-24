@@ -14,8 +14,10 @@ class App extends React.Component {
     render() {
         return (
             <MuiThemeProvider>
-                <SearchBar />
-                <ResultsList items={locations} />
+                <div>
+                    <SearchBar />
+                    <ResultsList items={locations} />
+                </div>
             </MuiThemeProvider>
         );
     }
