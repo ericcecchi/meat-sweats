@@ -1,11 +1,12 @@
 import React from 'react';
+import Clear from 'material-ui/svg-icons/content/clear';
 import NearMe from 'material-ui/svg-icons/maps/near-me';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 import {blue500} from 'material-ui/styles/colors';
 import Paper from 'material-ui/Paper';
 import IconButton from 'material-ui/IconButton';
-import axios from 'axios';
+import CircularProgress from 'material-ui/CircularProgress';
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -14,6 +15,11 @@ class SearchBar extends React.Component {
             textFieldValue: ''
         }
     }
+
+    clearField = () => {
+        this.setState({textFieldValue: ''});
+        this.searchClickHandler();
+    };
 
     handleTextFieldChange = (e) => {
         this.setState({textFieldValue: e.currentTarget.value});
@@ -29,24 +35,40 @@ class SearchBar extends React.Component {
     };
 
     render() {
-        return (
-          <Paper className="SearchBar">
-            <TextField
-                value={this.state.textFieldValue}
-                onChange={this.handleTextFieldChange}
-                underlineShow={false}
-                className="SearchBar-field"
-                hintText="Search by address"
-            />
-            <IconButton onClick={this.searchClickHandler} tooltip="Search">
-                <Search hoverColor="gray"/>
-            </IconButton>
-            <div className="nearMe">
-              <IconButton onClick={this.props.onChange} tooltip="My Location">
-                <NearMe color={blue500}/>
-              </IconButton>
+        const nearButton = navigator.geolocation ? (
+            <div className="SearchBar-near">
+                <IconButton onClick={this.props.onChange} tooltip="Use my Location">
+                    <NearMe color={blue500}/>
+                </IconButton>
             </div>
-          </Paper>
+        ) : null;
+        const clearButton = this.props.isLoading ? (
+            <div className="SearchBar-clear">
+                <CircularProgress size={.33} />
+            </div>
+        ) : (
+            <div className="SearchBar-clear">
+                <IconButton onClick={this.clearField} tooltip="Clear">
+                    <Clear hoverColor="gray"/>
+                </IconButton>
+            </div>
+        );
+
+        return (
+            <Paper className="SearchBar">
+                {nearButton}
+                <TextField
+                    value={this.state.textFieldValue}
+                    onChange={this.handleTextFieldChange}
+                    underlineShow={false}
+                    className="SearchBar-field"
+                    hintText="Search by address"
+                />
+                <IconButton onClick={this.searchClickHandler} tooltip="Search">
+                    <Search hoverColor="gray"/>
+                </IconButton>
+                {this.state.textFieldValue && clearButton}
+            </Paper>
         );
     }
 }

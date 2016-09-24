@@ -19,7 +19,7 @@ export function getLocations(address, near_me=false) {
 
     return new Promise((resolve) => {
         // axios.get('https://base_url:base_port/locations'+query_params)
-        axios.get('/fixtures/locations.json')
+        axios.get('http://ec2-54-218-0-220.us-west-2.compute.amazonaws.com:3000/locations.json')
             .then((response) => {
                 resolve(response.data);
             });

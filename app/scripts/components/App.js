@@ -1,6 +1,5 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import LinearProgress from 'material-ui/LinearProgress';
 
 import ResultsList from './ResultsList';
 import SearchBar from './SearchBar';
@@ -39,9 +38,8 @@ class App extends React.Component {
         return (
             <MuiThemeProvider>
                 <div>
-                    <SearchBar onChange={getLocations} />
-                    <h1>Find <span title="food">{food[Math.floor(Math.random() * food.length)]}</span> near you.</h1>
-                    {this.state.isLoading && <LinearProgress mode="indeterminate" />}
+                    <h1>Free <span title="food">{food[Math.floor(Math.random() * food.length)]}</span> near you.</h1>
+                    <SearchBar isLoading={this.state.isLoading} onChange={getLocations} />
                     {this.state.locations && <ResultsList items={this.state.locations} />}
                 </div>
             </MuiThemeProvider>
