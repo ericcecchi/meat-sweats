@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
     }
 
     handleTextFieldChange = (e) => {
-        return e.currentTarget.value;
+        this.setState({textFieldValue: e.currentTarget.value});
     };
 
     searchClickHandler = (e) => {
