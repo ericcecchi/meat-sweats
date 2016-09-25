@@ -18,7 +18,6 @@ class SearchBar extends React.Component {
 
     clearField = () => {
         this.setState({textFieldValue: ''});
-        this.searchClickHandler();
         this.props.clearLocations();
     };
 
@@ -27,7 +26,14 @@ class SearchBar extends React.Component {
     };
 
     searchClickHandler = (e) => {
-        this.props.onChange(this.state.textFieldValue, false);
+        this.state.textFieldValue && this.props.onChange(this.state.textFieldValue, false);
+    };
+
+    enterKeyHandler = (e) => {
+        console.log(e.key);
+        if (e.key == 'Enter') {
+            this.props.onChange(this.state.textFieldValue, false);
+        }
     };
 
     nearMeClickHandler = (e) => {
@@ -64,6 +70,7 @@ class SearchBar extends React.Component {
                     underlineShow={false}
                     className="SearchBar-field"
                     hintText="Search by address"
+                    onKeyPress={this.enterKeyHandler}
                 />
                 <IconButton onClick={this.searchClickHandler} tooltip="Search">
                     <Search hoverColor="gray"/>

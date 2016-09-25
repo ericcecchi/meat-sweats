@@ -45,7 +45,15 @@ const Result = (props) => {
             }
             secondaryTextLines={2}
             onClick={maps_redirect(props)}
-            rightIcon={<Badge badgeContent={<span dangerouslySetInnerHTML={{__html: `${props.distance.toFixed(1)}&nbsp;mi`}}></span>} badgeStyle={{background: "transparent"}}></Badge>}
+            rightIcon={(props.distance &&
+                <Badge
+                    badgeContent={(
+                        <span
+                            dangerouslySetInnerHTML={{__html: `${props.distance.toFixed(1)}&nbsp;mi`}} />
+                    )}
+                    badgeStyle={{background: "transparent"}}
+                />
+            )}
         />
     );
 };
@@ -74,9 +82,9 @@ class ResultsList extends React.Component {
                         )
                     })}
                     {(!this.props.items.length || this.props.items.length == 0) && (
-                        <Result
-                            name="No locations found"
-                            street_address="Please try another search."
+                        <ListItem
+                            primaryText="No locations found"
+                            secondaryText="Please try another search."
                         />
                     )}
                 </List>
