@@ -1,29 +1,28 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
-import Badge from 'material-ui/Badge';
+import moment from 'moment';
 
-import {List, ListItem} from 'material-ui/List';
+import Badge from 'material-ui/Badge';
 import Divider from 'material-ui/Divider';
+import {List, ListItem} from 'material-ui/List';
+import Paper from 'material-ui/Paper';
 import Subheader from 'material-ui/Subheader';
-import moment from "moment";
 
 const build_maps_url = (params) => {
     const map_url_parameters = [params.street_address, params.city, params.state, params.postal_code];
-    const maps_url = "https://maps.google.com?q=" + encodeURIComponent(map_url_parameters.join(" "));
-    return maps_url;
+    return 'https://maps.google.com?q=' + encodeURIComponent(map_url_parameters.join(' '));
 };
 
 const maps_redirect = (params) => {
-    return function() {window.open(build_maps_url(params))};
+    return (e) => window.open(build_maps_url(params));
 };
 
 const Result = (props) => {
     let isOpen = false;
     const now = moment();
-    const breakfast = props.meal_types && props.meal_types.indexOf('breakfast') >= 0 && '☕';
-    const lunch = props.meal_types && props.meal_types.indexOf('lunch') >= 0 && '🍴';
-    const snack = props.meal_types && props.meal_types.indexOf('snack') >= 0 && '🍎';
-    props.meal_hours && Object.values(props.meal_hours).map((mealTime) => {
+    const breakfast = props.meal_types.indexOf('breakfast') >= 0 ? '☕' : '';
+    const lunch = props.meal_types.indexOf('lunch') >= 0 ? '🍴' : '';
+    const snack = props.meal_types.indexOf('snack') >= 0 ? '🍎' : '';
+    Object.values(props.meal_hours).map((mealTime) => {
         const startTime = moment(mealTime.startTime, 'hh:mm');
         const endTime = moment(mealTime.endTime, 'hh:mm');
         if (mealTime.days[now.day() - 1] != 'x' && now.isBetween(startTime, endTime)) {
@@ -31,8 +30,7 @@ const Result = (props) => {
         }
     });
     const openString = isOpen ? 'Open now' : 'Closed now';
-    const availableString = [breakfast || '', lunch || '', snack || ''].join(' ').trim();
-    console.log('Result:', props);
+    const availableString = [breakfast, lunch, snack].join(' ');
 
     return (
         <ListItem
@@ -58,10 +56,19 @@ const Result = (props) => {
     );
 };
 
+Result.defaultProps = {
+    name: '',
+    street_address: '',
+    city: '',
+    postal_code: '',
+    meal_types: [],
+    meal_hours: [],
+    distance: 0
+};
 
 class ResultsList extends React.Component {
     static defaultProps = {
-        items: null
+        items: []
     };
 
     constructor(props) {
@@ -81,7 +88,7 @@ class ResultsList extends React.Component {
                             </div>
                         )
                     })}
-                    {(!this.props.items.length || this.props.items.length == 0) && (
+                    {(!this.props.items.length) && (
                         <ListItem
                             primaryText="No locations found"
                             secondaryText="Please try another search."

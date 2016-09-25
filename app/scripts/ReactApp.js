@@ -7,8 +7,5 @@ import App from './components/App';
 export default function run() {
     injectTapEventPlugin();
 
-    ReactDOM.render(
-        <App />,
-        document.getElementById('app')
-    );
+    ReactDOM.render(<App />, document.getElementById('app'));
 }

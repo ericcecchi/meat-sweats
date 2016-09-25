@@ -1,12 +1,13 @@
 import React from 'react';
+
+import CircularProgress from 'material-ui/CircularProgress';
 import Clear from 'material-ui/svg-icons/content/clear';
+import {blue500} from 'material-ui/styles/colors';
+import IconButton from 'material-ui/IconButton';
 import NearMe from 'material-ui/svg-icons/maps/near-me';
+import Paper from 'material-ui/Paper';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
-import {blue500} from 'material-ui/styles/colors';
-import Paper from 'material-ui/Paper';
-import IconButton from 'material-ui/IconButton';
-import CircularProgress from 'material-ui/CircularProgress';
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -30,7 +31,6 @@ class SearchBar extends React.Component {
     };
 
     enterKeyHandler = (e) => {
-        console.log(e.key);
         if (e.key == 'Enter') {
             this.props.onChange(this.state.textFieldValue, false);
         }
@@ -38,7 +38,7 @@ class SearchBar extends React.Component {
 
     nearMeClickHandler = (e) => {
         this.props.onChange(null, true);
-        this.setState({textFieldValue: "Current Location"});
+        this.setState({textFieldValue: 'Current location'});
     };
 
     render() {

@@ -21,6 +21,7 @@ class App extends React.Component {
         this.setState({
             isLoading: true
         });
+
         API.getLocations(address, near_me)
             .then((locations) => {
                 this.setState({
@@ -36,12 +37,7 @@ class App extends React.Component {
         });
     };
 
-    componentDidMount() {
-        // this.getLocations();
-    }
-
     render() {
-        console.log('App state', this.state);
         return (
             <MuiThemeProvider>
                 <div>
