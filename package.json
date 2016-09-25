@@ -1,4 +1,7 @@
 {
+  "name": "meat-sweats",
+  "version": "0.1.0",
+  "description": "Helping kids find free food through nearby summer meal programs",
   "devDependencies": {
     "apache-server-configs": "^2.7.1",
     "babel-core": "^6.0.15",
