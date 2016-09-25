@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ResultsList from './ResultsList';
 import SearchBar from './SearchBar';
 
-import {getLocations} from './API';
+import API from './API';
 import food from '../../fixtures/food.json';
 
 class App extends React.Component {
@@ -21,7 +21,7 @@ class App extends React.Component {
         this.setState({
             isLoading: true
         });
-        getLocations(address, near_me)
+        API.getLocations(address, near_me)
             .then((locations) => {
                 this.setState({
                     locations,

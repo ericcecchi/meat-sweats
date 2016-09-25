@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
-export function getLocations(address, near_me=false) {
+function getLocations(address, near_me=false) {
     return new Promise((resolve) => {
         let query_params = "?";
         if (address) {
@@ -29,3 +29,7 @@ export function getLocations(address, near_me=false) {
         }
     });
 }
+
+export default {
+    getLocations
+};
