@@ -19,6 +19,7 @@ class SearchBar extends React.Component {
     clearField = () => {
         this.setState({textFieldValue: ''});
         this.searchClickHandler();
+        this.props.clearLocations();
     };
 
     handleTextFieldChange = (e) => {

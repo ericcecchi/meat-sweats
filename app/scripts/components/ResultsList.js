@@ -31,6 +31,8 @@ const Result = (props) => {
         }
     });
     const openString = isOpen ? 'Open now' : 'Closed now';
+    const availableString = [breakfast || '', lunch || '', snack || ''].join(' ').trim();
+    console.log('Result:', props);
 
     return (
         <ListItem
@@ -38,7 +40,7 @@ const Result = (props) => {
             secondaryText={
                 <p>
                     {props.street_address}<br />
-                    {breakfast} {lunch} {snack} • {openString}
+                    {availableString && availableString + ' • '} {openString}
                 </p>
             }
             secondaryTextLines={2}

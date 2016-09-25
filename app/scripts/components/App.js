@@ -30,6 +30,12 @@ class App extends React.Component {
             });
     };
 
+    clearLocations = () => {
+        this.setState({
+            locations: null
+        });
+    };
+
     componentDidMount() {
         // this.getLocations();
     }
@@ -40,7 +46,7 @@ class App extends React.Component {
             <MuiThemeProvider>
                 <div>
                     <h1>Free <span title="food">{this.state.food}</span> near you.</h1>
-                    <SearchBar isLoading={this.state.isLoading} onChange={this.getLocations} />
+                    <SearchBar isLoading={this.state.isLoading} onChange={this.getLocations} clearLocations={this.clearLocations} />
                     {this.state.locations && <ResultsList items={this.state.locations} />}
                 </div>
             </MuiThemeProvider>
