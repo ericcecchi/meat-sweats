@@ -30,7 +30,7 @@ const Result = (props) => {
         }
     });
     const openString = isOpen ? 'Open now' : 'Closed now';
-    const availableString = [breakfast, lunch, snack].join(' ');
+    const availableString = [breakfast, lunch, snack].join(' ').trim();
 
     return (
         <ListItem
@@ -38,11 +38,11 @@ const Result = (props) => {
             secondaryText={
                 <p>
                     {props.street_address}<br />
-                    {availableString && availableString + ' • '} {openString}
+                    {availableString && availableString + ' • '} <strong>{openString}</strong>
                 </p>
             }
             secondaryTextLines={2}
-            onClick={maps_redirect(props)}
+            onTouchTap={maps_redirect(props)}
             rightIcon={(props.distance &&
                 <Badge
                     badgeContent={(

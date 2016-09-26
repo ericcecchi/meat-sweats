@@ -195,9 +195,12 @@ gulp.task('serve:dist', ['default'], () =>
   })
 );
 
+gulp.task('set-production', ()=> process.env.NODE_ENV = 'production');
+
 // Build production files, the default task
 gulp.task('default', ['clean'], cb =>
   runSequence(
+    'set-production',
     'styles',
     ['lint', 'html', 'scripts', 'images', 'copy'],
     'generate-service-worker',

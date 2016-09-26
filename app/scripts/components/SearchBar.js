@@ -44,7 +44,11 @@ class SearchBar extends React.Component {
     render() {
         const nearButton = navigator.geolocation ? (
             <div className="SearchBar-near">
-                <IconButton onClick={this.nearMeClickHandler} tooltip="Use my location">
+                <IconButton
+                    onTouchTap={this.nearMeClickHandler}
+                    tooltip="Use my location"
+                    tooltipPosition="bottom-right"
+                >
                     <NearMe color={blue500}/>
                 </IconButton>
             </div>
@@ -55,7 +59,7 @@ class SearchBar extends React.Component {
             </div>
         ) : (
             <div className="SearchBar-clear">
-                <IconButton onClick={this.clearField} tooltip="Clear">
+                <IconButton onTouchTap={this.clearField} tooltip="Clear">
                     <Clear hoverColor="gray"/>
                 </IconButton>
             </div>
@@ -72,7 +76,10 @@ class SearchBar extends React.Component {
                     hintText="Search by address"
                     onKeyPress={this.enterKeyHandler}
                 />
-                <IconButton onClick={this.searchClickHandler} tooltip="Search">
+                <IconButton
+                    onTouchTap={this.searchClickHandler}
+                    tooltip="Search"
+                >
                     <Search hoverColor="gray"/>
                 </IconButton>
                 {this.state.textFieldValue && clearButton}
